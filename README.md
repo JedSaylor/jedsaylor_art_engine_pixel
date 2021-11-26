@@ -1,24 +1,16 @@
-# Welcome to HashLips 👄
+# Welcome to Jed Saylor 👾
 
-![](https://github.com/HashLips/hashlips_art_engine/blob/main/logo.png)
+![logo](https://user-images.githubusercontent.com/95023449/143539159-06175af4-7dca-419b-a613-eb3b5fbe2b8f.png)
 
-All the code in these repos was created and explained by HashLips on the main YouTube channel.
+All the code in these repos was created and explained by Jed Saylor in his course.
 
-To find out more please visit:
+To find help please visit:
 
-[📺 YouTube](https://www.youtube.com/channel/UC1LV4_VQGBJHTJjEWUmy8nA)
+[📺  Instagram](https://www.instagram.com/jedsaylor/)
 
-[👄 Discord](https://discord.com/invite/qh6MWhMJDN)
+# Jed Saylor Art Engine 🔥
 
-[💬 Telegram](https://t.me/hashlipsnft)
-
-[🐦 Twitter](https://twitter.com/hashlipsnft)
-
-[ℹ️ Website](https://hashlips.online/HashLips)
-
-# HashLips Art Engine 🔥
-
-![](https://github.com/HashLips/hashlips_art_engine/blob/main/banner.png)
+![banner](https://user-images.githubusercontent.com/95023449/143539398-718265a8-90a4-43c3-821b-c299f2e40831.png)
 
 Create generative art by using the canvas api and node js. Before you use the generation engine, make sure you have node.js installed.
 
@@ -107,11 +99,7 @@ You can mix up the `layerConfigurations` order on how the images are saved by se
 
 If you want to have logs to debug and see what is happening when you generate images you can set the variable `debugLogs` in the `config.js` file to true. It is false by default, so you will only see general logs.
 
-If you want to play around with different blending modes, you can add a `blend: MODE.colorBurn` field to the layersOrder `options` object.
-
-If you need a layers to have a different opacity then you can add the `opacity: 0.7` field to the layersOrder `options` object as well.
-
-To use a different metadata attribute name you can add the `displayName: "Awesome Eye Color"` to the `options` object. All options are optional and can be addes on the same layer if you want to.
+If you want to play around with different blending modes, you can add a `blend: MODE.colorBurn` field to the layersOrder object. If you need a layers to have a different opacity then you can add the `opacity: 0.7` field to the layersOrder object as well. Both the `blend: MODE.colorBurn` and `opacity: 0.7` can be addes on the same layer if you want to.
 
 Here is an example on how you can play around with both filter fields:
 
@@ -122,18 +110,11 @@ const layerConfigurations = [
     layersOrder: [
       { name: "Background" },
       { name: "Eyeball" },
-      {
-        name: "Eye color",
-        options: {
-          blend: MODE.destinationIn,
-          opcacity: 0.2,
-          displayName: "Awesome Eye Color",
-        },
-      },
+      { name: "Eye color", blend: MODE.colorBurn },
       { name: "Iris" },
       { name: "Shine" },
-      { name: "Bottom lid", options: { blend: MODE.overlay, opacity: 0.7 } },
-      { name: "Top lid" },
+      { name: "Bottom lid", blend: MODE.overlay, opacity: 0.7 },
+      { name: "Top lid", opacity: 0.7 },
     ],
   },
 ];
@@ -191,7 +172,7 @@ The program will output all the images in the `build/images` directory along wit
   "dna": "d956cdf4e460508b5ff90c21974124f68d6edc34",
   "name": "#1",
   "description": "This is the description of your NFT project",
-  "image": "https://hashlips/nft/1.png",
+  "image": "https://JedSaylor/nft/1.png",
   "edition": 1,
   "date": 1731990799975,
   "attributes": [
@@ -203,7 +184,7 @@ The program will output all the images in the `build/images` directory along wit
     { "trait_type": "Bottom lid", "value": "Low" },
     { "trait_type": "Top lid", "value": "Middle" }
   ],
-  "compiler": "HashLips Art Engine"
+  "compiler": "Jed Saylor Art Engine"
 }
 ```
 
@@ -211,7 +192,7 @@ You can also add extra metadata to each metadata file by adding your extra items
 
 ```js
 const extraMetadata = {
-  creator: "Daniel Eugene Botha",
+  creator: "Jed Saylor",
 };
 ```
 
@@ -225,12 +206,12 @@ That's it, you're done.
 
 ## Utils
 
-### Updating baseUri for IPFS and description
+### Updating baseUri for IPFS
 
-You might possibly want to update the baseUri and description after you have ran your collection. To update the baseUri and description simply run:
+You might possibly want to update the baseUri after you have ran your collection. To update the baseUri simply run:
 
 ```sh
-npm run update_info
+node utils/updateBaseUri.js
 ```
 
 ### Generate a preview image
@@ -238,26 +219,15 @@ npm run update_info
 Create a preview image collage of your collection, run:
 
 ```sh
-npm run preview
+node utils/createPreviewCollage.js
 ```
 
-### Generate pixelated images from collection
+### Re-generate the \_metadata.json file
 
-In order to convert images into pixelated images you would need a list of images that you want to convert. So run the generator first.
-
-Then simply run this command:
+This util will only work if you have all the individual json files and want to re-generate the \_metadata.json file if you lost it, run:
 
 ```sh
-npm run pixelate
-```
-
-All your images will be outputted in the `/build/pixel_images` directory.
-If you want to change the ratio of the pixelation then you can update the ratio property on the `pixelFormat` object in the `src/config.js` file. The lower the number on the left, the more pixelated the image will be.
-
-```js
-const pixelFormat = {
-  ratio: 5 / 128,
-};
+node utils/regenerateMetadata.js
 ```
 
 ### Printing rarity data (Experimental feature)
@@ -265,7 +235,7 @@ const pixelFormat = {
 To see the percentages of each attribute across your collection, run:
 
 ```sh
-npm run rarity
+node utils/rarityData.js
 ```
 
 The output will look something like this:
@@ -282,4 +252,4 @@ Trait type: Iris
 { trait: 'Small', chance: '60', occurrence: '70% out of 100%' }
 ```
 
-Hope you create some awesome artworks with this code 👄
+Hope you create some awesome artworks with this code 👾
